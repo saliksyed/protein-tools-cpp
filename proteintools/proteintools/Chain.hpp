@@ -15,7 +15,6 @@
 #include <Eigen/Core>
 #include "Residue.hpp"
 #include "Atom.hpp"
-#include "Bond.hpp"
 #include <vector>
 using namespace std;
 

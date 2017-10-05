@@ -14,22 +14,17 @@
 #include <Eigen/Core>
 #include "Residue.hpp"
 #include "Atom.hpp"
-#include "Bond.hpp"
 using namespace std;
 
 class ForceField {
 public:
     ForceField(const char* path);
-    
+    Residue* createResidue(ResidueType r, bool isChainStart, bool isChainEnd);
 protected:
     double _lj14scale;
     double _c14scale;
-    map<string,Eigen::Vector4f> _geometry;
     map<int, AtomType> _atomTypes;
-    map<AtomType,Eigen::Vector4f> _chargeParams;
-    map<ResidueType,AtomType> _residueAtoms;
-    map<ResidueType,Bond> _residueBonds;
-    map<ResidueType,Bond> _residueExternalBonds;
+    map<ResidueType,Residue> _residues;
     
     void parse(const char * path);
 

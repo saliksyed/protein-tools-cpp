@@ -13,41 +13,25 @@
 #include <string>
 #include <Eigen/Core>
 #include <map>
+#include <vector>
 #include "Atom.hpp"
-
+#include "PDBGeometry.hpp"
 using namespace std;
 
-enum ResidueType {
-    ALA,
-    ARG,
-    ASN,
-    ASP,
-    CYS,
-    GLN,
-    GLU,
-    GLY,
-    HIS,
-    HIS_DEFAULT_ISOMER,
-    ILE,
-    LEU,
-    LYS,
-    MET,
-    PRO,
-    PHE,
-    SER,
-    THR,
-    TRP,
-    TYR,
-    VAL
+
+struct Bond {
+    Bond(int a, int b) : atom1_idx(a), atom2_idx(b) {};
+    unsigned int atom1_idx;
+    unsigned int atom2_idx;
 };
 
-class ResidueGeometry {
+typedef string ResidueType;
+typedef string AtomName;
+
+class Residue {
 public:
-    ResidueGeometry(string & path);
-    map<AtomType, Eigen::Vector4d>& getGeometry(ResidueType & residue);
-protected:
-    map<ResidueType,map<AtomType, Eigen::Vector4d>> _geometry;
+    Residue(string name, map<AtomName, AtomType>& atoms, vector<Bond>& bonds, vector<Bond>& externalBonds);
+    void setGeometry(PDBGeometry & geometry);
 };
-
 
 #endif /* Residue_hpp */
