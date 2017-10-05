@@ -12,7 +12,10 @@
 #include <stdio.h>
 
 class PDBGeometry {
-    
+public:
+    PDBGeometry(const char * path);
+protected:
+    parse(const char * path);
 };
 
 #endif /* PDBGeometry_hpp */
