@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B75C3C61F85B87E009630D5 /* ForceField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3C51F85B87E009630D5 /* ForceField.cpp */; };
+		9B75C3C91F85B9F7009630D5 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3C81F85B9F7009630D5 /* tinyxml2.cpp */; };
+		9B75C3CC1F85BC31009630D5 /* Residue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3CA1F85BC31009630D5 /* Residue.cpp */; };
+		9B75C3CF1F85BD0C009630D5 /* Atom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3CD1F85BD0C009630D5 /* Atom.cpp */; };
+		9B75C3D31F85BE32009630D5 /* Bond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3D11F85BE32009630D5 /* Bond.cpp */; };
+		9B75C3D61F85C0BD009630D5 /* Chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3D41F85C0BD009630D5 /* Chain.cpp */; };
 		9B9D93871F8543EE00253880 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D93861F8543EE00253880 /* main.cpp */; };
 		9B9D938E1F8547E700253880 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9D938D1F8547E700253880 /* OpenCL.framework */; };
 /* End PBXBuildFile section */
@@ -24,6 +30,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B75C3C41F85B836009630D5 /* ForceField.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ForceField.hpp; sourceTree = "<group>"; };
+		9B75C3C51F85B87E009630D5 /* ForceField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ForceField.cpp; sourceTree = "<group>"; };
+		9B75C3C71F85B9F7009630D5 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		9B75C3C81F85B9F7009630D5 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
+		9B75C3CA1F85BC31009630D5 /* Residue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Residue.cpp; sourceTree = "<group>"; };
+		9B75C3CB1F85BC31009630D5 /* Residue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Residue.hpp; sourceTree = "<group>"; };
+		9B75C3CD1F85BD0C009630D5 /* Atom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atom.cpp; sourceTree = "<group>"; };
+		9B75C3CE1F85BD0C009630D5 /* Atom.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Atom.hpp; sourceTree = "<group>"; };
+		9B75C3D11F85BE32009630D5 /* Bond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bond.cpp; sourceTree = "<group>"; };
+		9B75C3D21F85BE32009630D5 /* Bond.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bond.hpp; sourceTree = "<group>"; };
+		9B75C3D41F85C0BD009630D5 /* Chain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chain.cpp; sourceTree = "<group>"; };
+		9B75C3D51F85C0BD009630D5 /* Chain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Chain.hpp; sourceTree = "<group>"; };
+		9B75C3D71F85C4A5009630D5 /* amber99sb.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = amber99sb.xml; sourceTree = "<group>"; };
 		9B9D93831F8543EE00253880 /* proteintools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = proteintools; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9D93861F8543EE00253880 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9B9D938D1F8547E700253880 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
@@ -41,6 +60,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B75C3D01F85BE01009630D5 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				9B75C3D71F85C4A5009630D5 /* amber99sb.xml */,
+				9B75C3C71F85B9F7009630D5 /* tinyxml2.h */,
+				9B75C3C81F85B9F7009630D5 /* tinyxml2.cpp */,
+			);
+			name = external;
+			sourceTree = "<group>";
+		};
 		9B9D937A1F8543EE00253880 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +90,17 @@
 		9B9D93851F8543EE00253880 /* proteintools */ = {
 			isa = PBXGroup;
 			children = (
+				9B75C3D01F85BE01009630D5 /* external */,
+				9B75C3CE1F85BD0C009630D5 /* Atom.hpp */,
+				9B75C3CD1F85BD0C009630D5 /* Atom.cpp */,
+				9B75C3D21F85BE32009630D5 /* Bond.hpp */,
+				9B75C3D11F85BE32009630D5 /* Bond.cpp */,
+				9B75C3D51F85C0BD009630D5 /* Chain.hpp */,
+				9B75C3D41F85C0BD009630D5 /* Chain.cpp */,
+				9B75C3C41F85B836009630D5 /* ForceField.hpp */,
+				9B75C3C51F85B87E009630D5 /* ForceField.cpp */,
+				9B75C3CA1F85BC31009630D5 /* Residue.cpp */,
+				9B75C3CB1F85BC31009630D5 /* Residue.hpp */,
 				9B9D93861F8543EE00253880 /* main.cpp */,
 			);
 			path = proteintools;
@@ -122,7 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B75C3D61F85C0BD009630D5 /* Chain.cpp in Sources */,
+				9B75C3D31F85BE32009630D5 /* Bond.cpp in Sources */,
+				9B75C3C91F85B9F7009630D5 /* tinyxml2.cpp in Sources */,
+				9B75C3CC1F85BC31009630D5 /* Residue.cpp in Sources */,
+				9B75C3C61F85B87E009630D5 /* ForceField.cpp in Sources */,
 				9B9D93871F8543EE00253880 /* main.cpp in Sources */,
+				9B75C3CF1F85BD0C009630D5 /* Atom.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +301,7 @@
 				9B9D938C1F8543EE00253880 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <OpenCL/opencl.h>
-
+#include "ForceField.hpp"
 using Eigen::MatrixXd;
 
 
@@ -225,5 +225,6 @@ int main(int argc, char** argv)
     m(0,1) = -1;
     m(1,1) = m(1,0) + m(0,1);
     std::cout << m << std::endl;
+    ForceField("/Users/saliksyed/Desktop/amber99sb.xml");
     return 0;
 }
