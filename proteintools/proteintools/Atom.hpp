@@ -15,9 +15,11 @@ using namespace std;
 
 #define ATOM_NAME_MAX_CHAR 8
 
+typedef string AtomName;
+
 struct AtomType {
     AtomType() : charge(0.0), sigma(0.0), epsilon(1.0) {}
-    int name;
+    int ID;
     char element[ATOM_NAME_MAX_CHAR];
     char atomClass[ATOM_NAME_MAX_CHAR];
     double mass;
@@ -28,7 +30,7 @@ struct AtomType {
 
 class Atom {
 public:
-    Atom(AtomType & definition);
+    Atom(AtomType& definition);
     Eigen::Vector4f getPosition();
     AtomType& getType();
 protected:

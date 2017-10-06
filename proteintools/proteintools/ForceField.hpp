@@ -19,12 +19,13 @@ using namespace std;
 class ForceField {
 public:
     ForceField(const char* path);
-    Residue* createResidue(ResidueType r, bool isChainStart, bool isChainEnd);
+    Residue* getResidue(ResidueType r, bool isChainStart=false, bool isChainEnd=false);
+    Residue* getResidue(const char* r, bool isChainStart=false, bool isChainEnd=false);
 protected:
     double _lj14scale;
     double _c14scale;
     map<int, AtomType> _atomTypes;
-    map<ResidueType,Residue> _residues;
+    map<ResidueType,Residue*> _residues;
     
     void parse(const char * path);
 

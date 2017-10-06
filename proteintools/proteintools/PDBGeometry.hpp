@@ -10,12 +10,28 @@
 #define PDBGeometry_hpp
 
 #include <stdio.h>
+#include <Eigen/Core>
+#include "Atom.hpp"
+#include "Residue.hpp"
+#include <map>
+using namespace std;
 
 class PDBGeometry {
 public:
-    PDBGeometry(const char * path);
+    static void load(const char * folder);
+    static PDBGeometry& get(ResidueType& res);
+    static PDBGeometry& get(const char* res);
+    PDBGeometry(ResidueType r, const char * path);
+    ResidueType name();
+    bool hasGeometry(AtomName& name);
+    Eigen::Vector4d position(AtomName& name);
 protected:
-    parse(const char * path);
+    ResidueType _residueName;
+    map<AtomName, Eigen::Vector4d> _geometry;
+    void parse(const char * path);
+private:
+    static map<ResidueType, PDBGeometry*> _data;
+    static const char* residueTypes[];
 };
 
 #endif /* PDBGeometry_hpp */

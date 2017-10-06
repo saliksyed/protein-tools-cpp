@@ -7,3 +7,23 @@
 //
 
 #include "Residue.hpp"
+
+
+Residue::Residue() {}
+
+void Residue::setName(ResidueType name) {
+    _name = name;
+}
+
+void Residue::addAtom(AtomName& name, AtomType& type) {
+    _atoms[name] = type;
+}
+
+void Residue::addBond(Bond& b) {
+    _bonds.push_back(b);
+}
+
+
+void Residue::addExternalBond(Bond& b) {
+    _externalBonds.push_back(b);
+}

@@ -18,6 +18,7 @@
 #include <sys/stat.h>
 #include <OpenCL/opencl.h>
 #include "ForceField.hpp"
+#include "PDBGeometry.hpp"
 using Eigen::MatrixXd;
 
 
@@ -225,6 +226,19 @@ int main(int argc, char** argv)
     m(0,1) = -1;
     m(1,1) = m(1,0) + m(0,1);
     std::cout << m << std::endl;
-    ForceField("/Users/saliksyed/Desktop/amber99sb.xml");
+    ForceField f = ForceField("/Users/saliksyed/Desktop/amber99sb.xml");
+    PDBGeometry::load("/Users/saliksyed/src/protein-tools-cpp/proteintools/proteintools/data/v3PDB");
+    Residue* ala = f.getResidue("ALA");
+    if (ala) {
+        cout<<ala->name()<<endl;
+        AtomIterator a = ala->first_atom();
+        while (a != ala->last_atom()) {
+            AtomName geo(a->first);
+            cout<<PDBGeometry::get("ALA").hasGeometry(geo)<<endl;
+            a++;
+        }
+
+    }
+    
     return 0;
 }
