@@ -22,10 +22,10 @@ struct AtomType {
     int ID;
     char element[ATOM_NAME_MAX_CHAR];
     char atomClass[ATOM_NAME_MAX_CHAR];
-    double mass;
-    double charge;
-    double sigma;
-    double epsilon;
+    float mass;
+    float charge;
+    float sigma;
+    float epsilon;
 };
 
 class Atom {

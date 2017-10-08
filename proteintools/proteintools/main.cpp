@@ -19,6 +19,8 @@
 #include <OpenCL/opencl.h>
 #include "ForceField.hpp"
 #include "PDBGeometry.hpp"
+#include "Chain.hpp"
+#include "Simulator.hpp"
 using Eigen::MatrixXd;
 
 
@@ -239,6 +241,12 @@ int main(int argc, char** argv)
         }
 
     }
+    
+    Chain c("CQQQEEEG");
+    
+    Simulator sim(c, f);
+    
+   
     
     return 0;
 }

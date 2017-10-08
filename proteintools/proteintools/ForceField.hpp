@@ -21,9 +21,10 @@ public:
     ForceField(const char* path);
     Residue* getResidue(ResidueType r, bool isChainStart=false, bool isChainEnd=false);
     Residue* getResidue(const char* r, bool isChainStart=false, bool isChainEnd=false);
+    ~ForceField();
 protected:
-    double _lj14scale;
-    double _c14scale;
+    float _lj14scale;
+    float _c14scale;
     map<int, AtomType> _atomTypes;
     map<ResidueType,Residue*> _residues;
     

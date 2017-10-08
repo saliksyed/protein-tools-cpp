@@ -18,6 +18,10 @@ ForceField::ForceField(const char * path) {
     parse(path);
 }
 
+ForceField::~ForceField() {
+    
+}
+
 void ForceField::parse(const char * path) {
     XMLDocument doc;
     doc.LoadFile(path);
@@ -29,15 +33,15 @@ void ForceField::parse(const char * path) {
         strcpy(a.atomClass, curr->Attribute("class"));
         strcpy(a.element,curr->Attribute("element"));
         curr->QueryIntAttribute("name", &a.ID);
-        curr->QueryDoubleAttribute("mass", &a.mass);
+        curr->QueryFloatAttribute("mass", &a.mass);
         _atomTypes.insert(pair<int, AtomType>(a.ID, a));
         curr = curr->NextSiblingElement();
     }
     
     // parse charge params
     curr = doc.FirstChildElement("ForceField")->FirstChildElement("NonbondedForce");
-    curr->QueryDoubleAttribute("coulomb14scale", &this->_c14scale);
-    curr->QueryDoubleAttribute("lj14scale", &this->_lj14scale);
+    curr->QueryFloatAttribute("coulomb14scale", &this->_c14scale);
+    curr->QueryFloatAttribute("lj14scale", &this->_lj14scale);
     curr = curr->FirstChildElement("Atom");
     while (curr) {
         int key;
@@ -45,9 +49,9 @@ void ForceField::parse(const char * path) {
         map<int,AtomType>::iterator t = _atomTypes.find(key);
         
         if (t != _atomTypes.end()) {
-            curr->QueryDoubleAttribute("charge", &t->second.charge);
-            curr->QueryDoubleAttribute("sigma", &t->second.sigma);
-            curr->QueryDoubleAttribute("epsilon", &t->second.epsilon);
+            curr->QueryFloatAttribute("charge", &t->second.charge);
+            curr->QueryFloatAttribute("sigma", &t->second.sigma);
+            curr->QueryFloatAttribute("epsilon", &t->second.epsilon);
         }
         curr = curr->NextSiblingElement();
     }
@@ -64,13 +68,15 @@ void ForceField::parse(const char * path) {
         map<AtomName, AtomType> atoms;
         vector<Bond> bonds;
         vector<Bond> externalBonds;
+        int idx = 0;
         while (atomsElem) {
             int type;
             AtomName name(atomsElem->Attribute("name"));
             atomsElem->QueryIntAttribute("type", &type);
             map<int,AtomType>::iterator t = _atomTypes.find(type);
             if (t!= _atomTypes.end()) {
-                currResidue->addAtom(name, _atomTypes[type]);
+                currResidue->addAtom(name, _atomTypes[type], idx);
+                idx++;
             }
             atomsElem = atomsElem->NextSiblingElement("Atom");
         }
@@ -96,6 +102,15 @@ void ForceField::parse(const char * path) {
 }
 
 Residue* ForceField::getResidue(ResidueType r, bool isChainStart, bool isChainEnd) {
+    if (r == "HIS") {
+        r = ResidueType("HIE");
+    }
+    if (isChainStart) {
+        r = ResidueType("C" + r);
+    }
+    if (isChainEnd) {
+        r = ResidueType("N" + r);
+    }
     map<ResidueType, Residue*>::iterator t = _residues.find(r);
     if (t!= _residues.end()) {
         return _residues[r];

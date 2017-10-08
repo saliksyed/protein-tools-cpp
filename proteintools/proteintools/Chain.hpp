@@ -18,17 +18,16 @@
 #include <vector>
 using namespace std;
 
+typedef typename vector<ResidueType>::iterator ResidueTypeIterator;
+
 class Chain {
 public:
-    Chain(string& sequence);
-    void writeToPDB(string& path);
-    void setConformation();
-    void getConformation();
-    double getEnergy();
+    Chain(const char* sequence);
+    ResidueTypeIterator first_residue() { return _residues.begin(); }
+    ResidueTypeIterator last_residue() { return _residues.end(); }
 protected:
+    static ResidueType symbolToResidue(char symbol);
     vector<ResidueType> _residues;
-    vector<Eigen::Matrix4Xd> transforms;
-    float * _atoms;
 };
 
 #endif /* Chain_hpp */

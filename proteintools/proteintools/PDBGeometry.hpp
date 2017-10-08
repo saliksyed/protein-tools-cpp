@@ -18,16 +18,19 @@ using namespace std;
 
 class PDBGeometry {
 public:
+    PDBGeometry(ResidueType r, const char * path);
+    ~PDBGeometry();
+
+    ResidueType name();
+    bool hasGeometry(AtomName& name);
+    Eigen::Vector4f position(AtomName& name);
+    
     static void load(const char * folder);
     static PDBGeometry& get(ResidueType& res);
     static PDBGeometry& get(const char* res);
-    PDBGeometry(ResidueType r, const char * path);
-    ResidueType name();
-    bool hasGeometry(AtomName& name);
-    Eigen::Vector4d position(AtomName& name);
 protected:
     ResidueType _residueName;
-    map<AtomName, Eigen::Vector4d> _geometry;
+    map<AtomName, Eigen::Vector4f> _geometry;
     void parse(const char * path);
 private:
     static map<ResidueType, PDBGeometry*> _data;

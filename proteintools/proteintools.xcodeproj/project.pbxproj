@@ -13,6 +13,8 @@
 		9B75C3D61F85C0BD009630D5 /* Chain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3D41F85C0BD009630D5 /* Chain.cpp */; };
 		9B75C3DA1F85E8A9009630D5 /* PDBGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3D81F85E8A9009630D5 /* PDBGeometry.cpp */; };
 		9B75C3E41F860D4A009630D5 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3E21F860D4A009630D5 /* tinyxml2.cpp */; };
+		9B75C3E71F873561009630D5 /* Simulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3E51F873561009630D5 /* Simulator.cpp */; };
+		9B75C3EA1F8A8BE2009630D5 /* Conformation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3E81F8A8BE2009630D5 /* Conformation.cpp */; };
 		9B9D93871F8543EE00253880 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D93861F8543EE00253880 /* main.cpp */; };
 		9B9D938E1F8547E700253880 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9D938D1F8547E700253880 /* OpenCL.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,10 @@
 		9B75C3DB1F860ADB009630D5 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		9B75C3E21F860D4A009630D5 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
 		9B75C3E31F860D4A009630D5 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		9B75C3E51F873561009630D5 /* Simulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Simulator.cpp; sourceTree = "<group>"; };
+		9B75C3E61F873561009630D5 /* Simulator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Simulator.hpp; sourceTree = "<group>"; };
+		9B75C3E81F8A8BE2009630D5 /* Conformation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conformation.cpp; sourceTree = "<group>"; };
+		9B75C3E91F8A8BE2009630D5 /* Conformation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Conformation.hpp; sourceTree = "<group>"; };
 		9B9D93831F8543EE00253880 /* proteintools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = proteintools; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9D93861F8543EE00253880 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9B9D938D1F8547E700253880 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
@@ -101,7 +107,11 @@
 				9B75C3CB1F85BC31009630D5 /* Residue.hpp */,
 				9B75C3D81F85E8A9009630D5 /* PDBGeometry.cpp */,
 				9B75C3D91F85E8A9009630D5 /* PDBGeometry.hpp */,
+				9B75C3E51F873561009630D5 /* Simulator.cpp */,
+				9B75C3E61F873561009630D5 /* Simulator.hpp */,
 				9B9D93861F8543EE00253880 /* main.cpp */,
+				9B75C3E81F8A8BE2009630D5 /* Conformation.cpp */,
+				9B75C3E91F8A8BE2009630D5 /* Conformation.hpp */,
 			);
 			path = proteintools;
 			sourceTree = "<group>";
@@ -168,6 +178,8 @@
 				9B75C3C61F85B87E009630D5 /* ForceField.cpp in Sources */,
 				9B9D93871F8543EE00253880 /* main.cpp in Sources */,
 				9B75C3CF1F85BD0C009630D5 /* Atom.cpp in Sources */,
+				9B75C3EA1F8A8BE2009630D5 /* Conformation.cpp in Sources */,
+				9B75C3E71F873561009630D5 /* Simulator.cpp in Sources */,
 				9B75C3E41F860D4A009630D5 /* tinyxml2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

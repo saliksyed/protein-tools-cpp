@@ -75,7 +75,7 @@ void PDBGeometry::parse(const char *path) {
                 double x = strtod(tokens[4].c_str(), NULL);
                 double y = strtod(tokens[5].c_str(), NULL);
                 double z = strtod(tokens[6].c_str(), NULL);
-                Eigen::Vector4d vec(x, y, z, 1.0);
+                Eigen::Vector4f vec(x, y, z, 1.0);
                 _geometry[name] = vec;
             }
         }
@@ -87,7 +87,7 @@ bool PDBGeometry::hasGeometry(AtomName& name) {
     return _geometry.find(name) != _geometry.end();
 }
 
-Eigen::Vector4d PDBGeometry::position(AtomName& name) {
+Eigen::Vector4f PDBGeometry::position(AtomName& name) {
     return _geometry[name];
 }
 
