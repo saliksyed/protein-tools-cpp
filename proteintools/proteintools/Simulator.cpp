@@ -127,14 +127,21 @@ void Simulator::setConformation(Conformation &conformation) {
     }
 }
 
-void Simulator::getConformation(Conformation& conformation) {
+void Simulator::getConformation(Conformation& conformation) const {
     assert(conformation.numTorsionParameters() == _conformation->numTorsionParameters());
     for(size_t i = 0; i < _conformation->numTorsionParameters(); i++) {
         conformation.setTorsion(i, _conformation->getTorsion(i));
     }
 }
 
-float Simulator::getEnergy() {
+vector<AtomType> Simulator::getAtoms() const{
+    return vector<AtomType>();
+}
+vector<Bond> Simulator::getBonds() const{
+    return vector<Bond>();
+}
+
+float Simulator::getEnergy() const {
     // TODO: write OpenCL kernel using _atomsTransformed.data() and _atomParams.data()
     return 0.0;
 }

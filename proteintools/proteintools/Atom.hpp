@@ -28,14 +28,5 @@ struct AtomType {
     float epsilon;
 };
 
-class Atom {
-public:
-    Atom(AtomType& definition);
-    Eigen::Vector4f getPosition();
-    AtomType& getType();
-protected:
-    AtomType& _type;
-    Eigen::Vector4f _position;
-};
 
 #endif /* Atom_hpp */

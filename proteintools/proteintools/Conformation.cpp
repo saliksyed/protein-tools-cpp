@@ -15,10 +15,10 @@ void Conformation::setTorsion(size_t idx, float angle) {
     _torsionAngles[idx] = angle;
 }
 
-float Conformation::getTorsion(size_t idx) {
+float Conformation::getTorsion(size_t idx) const{
     return _torsionAngles[idx];
 }
 
-size_t Conformation::numTorsionParameters() {
+size_t Conformation::numTorsionParameters() const{
     return _torsionAngles.size();
 }

@@ -17,8 +17,8 @@ class Conformation {
 public:
     Conformation(size_t sz);
     void setTorsion(size_t idx, float angle);
-    float getTorsion(size_t idx);
-    size_t numTorsionParameters();
+    float getTorsion(size_t idx) const;
+    size_t numTorsionParameters() const;
 private:
     vector<float> _torsionAngles;
 };

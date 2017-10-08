@@ -22,10 +22,11 @@ class Simulator {
 public:
     Simulator(Chain& chain, ForceField& forcefield);
     ~Simulator();
-    float getEnergy();
+    float getEnergy() const;
     void setConformation(Conformation& conformation);
-    void getConformation(Conformation& conformation);
-    
+    void getConformation(Conformation& conformation) const;
+    vector<AtomType> getAtoms() const;
+    vector<Bond> getBonds() const;
 protected:
     Eigen::Matrix4Xf* _atoms;
     Eigen::Matrix4Xf* _atomsTransformed;
