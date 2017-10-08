@@ -19,7 +19,7 @@ void Residue::setName(ResidueType name) {
     _name = name;
 }
 
-ResidueType Residue::geometry_name() {
+ResidueType Residue::geometry_name() const {
     if (_name.length() == 3 && _name != "HIE") {
         return _name;
     } else if (_name == "HIE") {
@@ -49,7 +49,7 @@ void Residue::addExternalBond(Bond& b) {
 }
 
 
-Eigen::Matrix4f Residue::getTransformForChild(Residue *child) {
+Eigen::Matrix4f Residue::getTransformForChild(const Residue *child) const {
     // find parent (Nitrogen atom) of current residues external bonds
     ResidueType name = geometry_name();
     ResidueType child_name = child->geometry_name();
@@ -60,8 +60,8 @@ Eigen::Matrix4f Residue::getTransformForChild(Residue *child) {
     Eigen::Vector4f bondAxis(-1.0 * bondLength, 0.0, 0.0, 0.0);
 
     
-    AtomName parentAtomName = _atomIdxToName[_parentAtomIdx];
-    AtomName childAtomName = child->_atomIdxToName[child->_childAtomIdx];
+    AtomName parentAtomName = ((map<int, AtomName>) _atomIdxToName)[_parentAtomIdx];
+    AtomName childAtomName = ((map<int, AtomName>)child->_atomIdxToName)[child->_childAtomIdx];
     if (parent_geom.hasGeometry(parentAtomName) &&
         child_geom.hasGeometry(childAtomName)) {
         Eigen::Vector4f parent_pos = parent_geom.position(parentAtomName);

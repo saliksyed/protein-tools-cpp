@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6C7145610F319F999C1FE945E874F75A8D2F36C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6C7145610F319F999C1FE945E874F75A8D2F36C5" : 0,
+    "2A270499284A31AE3CBCFD57F264CA0ED9418B5E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DC09D5AD-91B3-48AE-A27E-E9E65184A45D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6C7145610F319F999C1FE945E874F75A8D2F36C5" : "protein-tools-cpp\/",
+    "2A270499284A31AE3CBCFD57F264CA0ED9418B5E" : "uWebSockets\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "proteintools",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proteintools\/proteintools.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/uNetworking\/uWebSockets.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2A270499284A31AE3CBCFD57F264CA0ED9418B5E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:saliksyed\/protein-tools-cpp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6C7145610F319F999C1FE945E874F75A8D2F36C5"
+    }
+  ]
+}

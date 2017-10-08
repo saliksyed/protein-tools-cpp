@@ -13,7 +13,7 @@
 #include <Eigen/Geometry>
 using namespace std;
 
-#define TORSION_EPSILON 0.001f
+#define TORSION_EPSILON 0.00001f
 
 Simulator::Simulator(Chain& chain, ForceField& forcefield) {
     
@@ -21,7 +21,7 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
     ResidueTypeIterator it = chain.first_residue();
 
     while (it != chain.last_residue()) {
-        Residue * r = forcefield.getResidue(*it,
+        const Residue * r = forcefield.getResidue(*it,
                                             it==chain.first_residue(),
                                             it==chain.last_residue() - 1);
         _residues.push_back(r);
@@ -48,7 +48,7 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
     size_t curr_atom = 0;
 
     for(size_t i = 0; i < _residues.size(); i++) {
-        Residue * r = _residues[i];
+        const Residue * r = _residues[i];
         ResidueType type = r->geometry_name();
         PDBGeometry & geom = PDBGeometry::get(type);
         AtomIterator a_it = r->first_atom();
@@ -92,7 +92,7 @@ void Simulator::setConformation(Conformation &conformation) {
         
         if (abs(currentParamValue - newParamValue) > TORSION_EPSILON) {
             // update the rotation matrix if non-zero:
-            if (abs(newParamValue) < TORSION_EPSILON) {
+            if (abs(newParamValue) > TORSION_EPSILON) {
                 Eigen::Matrix4f rot;
                 rot.setIdentity();
                 rot.block<3,3>(0,0) = Eigen::AngleAxisf(newParamValue,

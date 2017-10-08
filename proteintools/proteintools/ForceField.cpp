@@ -101,7 +101,7 @@ void ForceField::parse(const char * path) {
     }
 }
 
-Residue* ForceField::getResidue(ResidueType r, bool isChainStart, bool isChainEnd) {
+const Residue* ForceField::getResidue(ResidueType r, bool isChainStart, bool isChainEnd) {
     if (r == "HIS") {
         r = ResidueType("HIE");
     }
@@ -118,6 +118,6 @@ Residue* ForceField::getResidue(ResidueType r, bool isChainStart, bool isChainEn
     return NULL;
 }
 
-Residue* ForceField::getResidue(const char * r, bool isChainStart, bool isChainEnd) {
+const Residue* ForceField::getResidue(const char * r, bool isChainStart, bool isChainEnd) {
     return getResidue(ResidueType(r), isChainStart, isChainEnd);
 }

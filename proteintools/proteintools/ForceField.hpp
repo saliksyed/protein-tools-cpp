@@ -19,8 +19,8 @@ using namespace std;
 class ForceField {
 public:
     ForceField(const char* path);
-    Residue* getResidue(ResidueType r, bool isChainStart=false, bool isChainEnd=false);
-    Residue* getResidue(const char* r, bool isChainStart=false, bool isChainEnd=false);
+    const Residue* getResidue(ResidueType r, bool isChainStart=false, bool isChainEnd=false);
+    const Residue* getResidue(const char* r, bool isChainStart=false, bool isChainEnd=false);
     ~ForceField();
 protected:
     float _lj14scale;

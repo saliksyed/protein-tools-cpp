@@ -27,32 +27,32 @@ struct Bond {
 };
 
 typedef string ResidueType;
-typedef typename map<AtomName,AtomType>::iterator AtomIterator;
-typedef typename vector<Bond>::iterator BondIterator;
+typedef typename map<AtomName,AtomType>::const_iterator AtomIterator;
+typedef typename vector<Bond>::const_iterator BondIterator;
 
 
 class Residue {
 public:
     Residue();
-    ResidueType name() { return _name; }
-    ResidueType geometry_name();
+    ResidueType name() const { return _name; }
+    ResidueType geometry_name() const;
     void setName(ResidueType name);
     void addAtom(AtomName& name, AtomType& type, int idx);
     void addBond(Bond& b);
     void addExternalBond(Bond& b);
 
-    int childAtomIndex() { return _childAtomIdx; };
-    int parentAtomIndex() { return _parentAtomIdx; };
-    Eigen::Vector3f getBondAxis() { return _bondAxis; };
-    Eigen::Matrix4f getTransformForChild(Residue *child);
+    int childAtomIndex() const{ return _childAtomIdx; };
+    int parentAtomIndex() const{ return _parentAtomIdx; };
+    Eigen::Vector3f getBondAxis() const{ return _bondAxis; };
+    Eigen::Matrix4f getTransformForChild(const Residue *child) const;
 
-    size_t numAtoms() { return _atoms.size(); }
-    AtomIterator first_atom() { return _atoms.begin(); }
-    AtomIterator last_atom() { return _atoms.end(); }
-    BondIterator first_bond() { return _bonds.begin(); }
-    BondIterator last_bond() { return _bonds.end(); }
-    BondIterator first_external_bond() { return _externalBonds.begin(); }
-    BondIterator last_external_bond() { return _externalBonds.end(); }
+    size_t numAtoms() const { return _atoms.size(); }
+    AtomIterator first_atom() const { return _atoms.cbegin(); }
+    AtomIterator last_atom() const { return _atoms.cend(); }
+    BondIterator first_bond() const { return _bonds.cbegin(); }
+    BondIterator last_bond() const { return _bonds.cend(); }
+    BondIterator first_external_bond() const { return _externalBonds.cbegin(); }
+    BondIterator last_external_bond() const { return _externalBonds.cend(); }
 
 protected:
     int _childAtomIdx;

@@ -25,17 +25,17 @@ public:
     float getEnergy();
     void setConformation(Conformation& conformation);
     void getConformation(Conformation& conformation);
+    
 protected:
     Eigen::Matrix4Xf* _atoms;
     Eigen::Matrix4Xf* _atomsTransformed;
     Eigen::Matrix4Xf* _atomParams;
     
-    vector<Residue*> _residues;
+    vector<const Residue*> _residues;
     vector<Eigen::Matrix4f> _matrixStack;
     map<size_t, Eigen::Matrix4f> _torsionTransforms;
     vector<Eigen::Matrix4f> _translationTransforms;
     Conformation* _conformation;
-    size_t _lastUpdatedTorsionParam;
     
 };
 
