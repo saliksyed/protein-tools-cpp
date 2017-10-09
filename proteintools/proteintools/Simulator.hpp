@@ -18,6 +18,14 @@
 #include <assert.h>
 using namespace std;
 
+struct AtomInfo {
+    AtomType atom;
+    ResidueType residue;
+    bool isBackboneParent;
+    bool isBackboneChild;
+    Eigen::Vector4f position;
+};
+
 class Simulator {
 public:
     Simulator(Chain& chain, ForceField& forcefield);
@@ -25,8 +33,8 @@ public:
     float getEnergy() const;
     void setConformation(Conformation& conformation);
     void getConformation(Conformation& conformation) const;
-    vector<AtomType> getAtoms() const;
-    vector<Bond> getBonds() const;
+    vector<AtomInfo> getAtoms() const;
+    vector<pair<int, int>> getBonds() const;
 protected:
     Eigen::Matrix4Xf* _atoms;
     Eigen::Matrix4Xf* _atomsTransformed;

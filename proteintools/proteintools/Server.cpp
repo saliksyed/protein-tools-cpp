@@ -7,21 +7,78 @@
 //
 
 #include "Server.hpp"
+#include "json11.hpp"
+#include <iostream>
+using namespace json11;
 
 
-Server::Server(int port) {
+string Server::serializeTopology(vector<AtomInfo> & atomInfo, vector<pair<int, int>> & bonds) const {
+    vector<Json> items;
+    for(AtomInfo & atom : atomInfo) {
+        Json item  = Json::object {
+            { "element", atom.atom.element },
+            { "atomClass", atom.atom.atomClass },
+            { "residueId", atom.residue },
+            { "isParent", atom.isBackboneParent },
+            { "isChild", atom.isBackboneChild },
+            { "x", atom.position.x() },
+            { "y", atom.position.y() },
+            { "z", atom.position.z() }
+        };
+        items.push_back(item);
+    }
+    
+    vector<Json> bondItems;
+    
+    for(pair<int, int> & bond : bonds) {
+        bondItems.push_back(Json::array{bond.first, bond.second});
+    }
+    
+    Json data = Json::object {
+        {"atoms", items},
+        {"bonds", bondItems}
+    };
 
-    _uwsHub.onMessage([](uWS::WebSocket<uWS::SERVER> *ws, char *message, size_t length, uWS::OpCode opCode) {
-        if (strcmp(message, "topology")==0) {
-            // TODO: read topology from simulator, serialize it, send it
-            ws->send(message, length, uWS::OpCode::BINARY);
-        } else if (strcmp(message, "state")==0) {
-            // TODO: read the state for each atom from the simulator, serialize it, send it.
-            ws->send(message, length, uWS::OpCode::BINARY);
+    return Json(data).dump();
+}
+
+string Server::serializeState(vector<AtomInfo> & atomInfo) const {
+    vector<Json> items;
+    for(AtomInfo & atom : atomInfo) {
+        Json item  = Json::object {
+            { "x", atom.position.x() },
+            { "y", atom.position.y() },
+            { "z", atom.position.z() }
+        };
+        items.push_back(item);
+    }
+    Json data = Json::object {
+        {"atoms", items},
+    };
+    return Json(data).dump();
+}
+
+Server::Server(Simulator& sim): _sim(sim) {}
+
+void Server::run(int port) {
+    uWS::Hub _uwsHub;
+    _uwsHub.onMessage([this](uWS::WebSocket<uWS::SERVER> *ws, char *message, size_t length, uWS::OpCode opCode) {
+        if (message[0] == 'T') {
+            vector<AtomInfo> info = this->_sim.getAtoms();
+            vector<pair<int, int>> bonds = this->_sim.getBonds();
+            string ret = serializeTopology(info, bonds);
+            ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
+        } else if (message[0] == 'S') {
+            vector<AtomInfo> info = this->_sim.getAtoms();
+            string ret = serializeState(info);
+            ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
+        } else {
+            vector<AtomInfo> info = this->_sim.getAtoms();
+            vector<pair<int, int>> bonds = this->_sim.getBonds();
+            string ret = serializeTopology(info, bonds);
+            ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
         }
     });
-    
-    if (_uwsHub.listen(port)) {
-        _uwsHub.run();
-    }
+    _uwsHub.listen(port);
+    _uwsHub.run();
 }

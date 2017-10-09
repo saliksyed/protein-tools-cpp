@@ -10,13 +10,18 @@
 #define Server_hpp
 #include <uWS/uWS.h>
 #include <stdio.h>
+#include "Simulator.hpp"
+#include <string>
+using namespace std;
 
 class Server {
 public:
-    Server(int port);
-    
+    Server(Simulator& sim);
+    void run(int port);
 protected:
-    uWS::Hub _uwsHub;
+    string serializeTopology(vector<AtomInfo> & atomInfo, vector<pair<int, int>> & bonds) const;
+    string serializeState(vector<AtomInfo> & atomInfo) const;
+    Simulator& _sim;
 };
 
 #endif /* Server_hpp */

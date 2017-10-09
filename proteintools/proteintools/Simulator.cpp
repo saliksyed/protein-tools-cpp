@@ -134,11 +134,21 @@ void Simulator::getConformation(Conformation& conformation) const {
     }
 }
 
-vector<AtomType> Simulator::getAtoms() const{
-    return vector<AtomType>();
+vector<AtomInfo> Simulator::getAtoms() const{
+    AtomInfo test;
+    AtomType tp;
+    tp.ID = 0;
+    tp.element[0] = 'N';
+    tp.atomClass[0] = 'N';
+    test.atom = tp;
+    vector<AtomInfo> v;
+    v.push_back(test);
+    return v;
 }
-vector<Bond> Simulator::getBonds() const{
-    return vector<Bond>();
+vector<pair<int, int>> Simulator::getBonds() const{
+    vector<pair<int, int>> v;
+    v.push_back(pair<int, int>(0,0));
+    return v;
 }
 
 float Simulator::getEnergy() const {

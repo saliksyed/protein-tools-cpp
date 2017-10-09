@@ -28,5 +28,4 @@ struct AtomType {
     float epsilon;
 };
 
-
 #endif /* Atom_hpp */

@@ -22,6 +22,7 @@
 		9BA4D6561F8ADA80007CF599 /* libz.1.2.11.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D6551F8ADA80007CF599 /* libz.1.2.11.dylib */; };
 		9BA4D6581F8ADAFB007CF599 /* libssl.0.9.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D6571F8ADAFB007CF599 /* libssl.0.9.8.tbd */; };
 		9BA4D65B1F8ADED0007CF599 /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4D6591F8ADED0007CF599 /* json11.cpp */; };
+		9BA4D65D1F8B2975007CF599 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D65C1F8B2975007CF599 /* libuv.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		9BA4D6571F8ADAFB007CF599 /* libssl.0.9.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libssl.0.9.8.tbd; path = usr/lib/libssl.0.9.8.tbd; sourceTree = SDKROOT; };
 		9BA4D6591F8ADED0007CF599 /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json11.cpp; sourceTree = "<group>"; };
 		9BA4D65A1F8ADED0007CF599 /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json11.hpp; sourceTree = "<group>"; };
+		9BA4D65C1F8B2975007CF599 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../usr/local/Cellar/libuv/1.15.0/lib/libuv.1.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BA4D65D1F8B2975007CF599 /* libuv.1.dylib in Frameworks */,
 				9BA4D6581F8ADAFB007CF599 /* libssl.0.9.8.tbd in Frameworks */,
 				9BA4D6561F8ADA80007CF599 /* libz.1.2.11.dylib in Frameworks */,
 				9B9D938E1F8547E700253880 /* OpenCL.framework in Frameworks */,
@@ -97,6 +100,7 @@
 		9B9D937A1F8543EE00253880 = {
 			isa = PBXGroup;
 			children = (
+				9BA4D65C1F8B2975007CF599 /* libuv.1.dylib */,
 				9BA4D6571F8ADAFB007CF599 /* libssl.0.9.8.tbd */,
 				9BA4D6551F8ADA80007CF599 /* libz.1.2.11.dylib */,
 				9BA4D6531F8ADA3A007CF599 /* libuWS.dylib */,
@@ -296,6 +300,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/eigen/3.3.4/include/eigen3,
 					/usr/local/include,
@@ -307,7 +314,9 @@
 					/usr/local/Cellar/openssl/1.0.2j/lib,
 					"$(PROJECT_DIR)",
 					/usr/local/Cellar/zlib/1.2.11/lib,
+					/usr/local/Cellar/libuv/1.15.0/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-I",
@@ -325,6 +334,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/eigen/3.3.4/include/eigen3,
 					/usr/local/include,
@@ -336,7 +348,9 @@
 					/usr/local/Cellar/openssl/1.0.2j/lib,
 					"$(PROJECT_DIR)",
 					/usr/local/Cellar/zlib/1.2.11/lib,
+					/usr/local/Cellar/libuv/1.15.0/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-I",

@@ -6,9 +6,11 @@
 //  Copyright © 2017 N/A. All rights reserved.
 //
 
+#include "Server.hpp"
 #include "ProteinTools.h"
 #include <iostream>
 using namespace std;
+
 
 int main(int argc, char** argv)
 {
@@ -16,5 +18,7 @@ int main(int argc, char** argv)
     PDBGeometry::load("/Users/saliksyed/src/protein-tools-cpp/proteintools/proteintools/data/v3PDB");
     Chain c("CQQQEEEG");
     Simulator sim(c, f);
+    Server* server = new Server(sim);
+    server->run(1283);
     return 0;
 }
