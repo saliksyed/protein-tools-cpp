@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "proteintools/Simulator.cpp"
-            timestampString = "529311035.581256"
+            timestampString = "529344188.661806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "Simulator::getAtoms(vector&lt;AtomInfo&gt;&amp; atomList)"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "proteintools/Simulator.cpp"
-            timestampString = "529311035.581256"
+            timestampString = "529344188.661806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "Simulator::getAtoms(vector&lt;AtomInfo&gt;&amp; atomList)"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "proteintools/Simulator.cpp"
-            timestampString = "529310012.691216"
+            timestampString = "529314972.50039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "Simulator::Simulator(Chain&amp; chain, ForceField&amp; forcefield)"
             landmarkType = "5">
          </BreakpointContent>
@@ -110,6 +110,54 @@
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "ForceField::getResidue(ResidueType r, bool isChainStart, bool isChainEnd)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "proteintools/Simulator.cpp"
+            timestampString = "529314972.50039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "Simulator::Simulator(Chain&amp; chain, ForceField&amp; forcefield)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "proteintools/Simulator.cpp"
+            timestampString = "529344329.213539"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "Simulator::setConformation(Conformation &amp;conformation, bool forceUpdate)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "proteintools/Simulator.cpp"
+            timestampString = "529344368.14264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "Simulator::setConformation(Conformation &amp;conformation, bool forceUpdate)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

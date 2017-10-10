@@ -13,6 +13,7 @@
 #include "Forcefield.hpp"
 #include "Chain.hpp"
 #include "Conformation.hpp"
+#include "EnergyEvaluator.hpp"
 #include <vector>
 #include <Eigen/Core>
 #include <assert.h>
@@ -33,14 +34,15 @@ public:
     ~Simulator();
     float getEnergy() const;
     void setConformation(Conformation& conformation, bool forceUpdate=false);
-    void getConformation(Conformation& conformation) const;
+    Conformation getConformation() const;
     void getAtoms(vector<AtomInfo> & atoms) const;
     void getBonds(vector<pair<int, int>> & bonds) const;
 protected:
     Eigen::Matrix4Xf* _atoms;
     Eigen::Matrix4Xf* _atomsTransformed;
     Eigen::Matrix4Xf* _atomParams;
-    
+    size_t _numAtoms;
+    EnergyEvaluator* _evaluator;
     vector<const Residue*> _residues;
     vector<Eigen::Matrix4f> _matrixStack;
     map<size_t, Eigen::Matrix4f> _torsionTransforms;

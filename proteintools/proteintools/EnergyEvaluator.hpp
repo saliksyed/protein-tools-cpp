@@ -10,23 +10,32 @@
 #define EnergyEvaluator_hpp
 
 #include <Eigen/Core>
+#include <OpenCL/opencl.h>
 #include <stdio.h>
 
 class EnergyEvaluator {
 public:
-    EnergyEvaluator(float lj14scale, float c14scale) : _c14scale(c14scale), _lj14scale(lj14scale) {}
-    virtual float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms);
+    EnergyEvaluator(unsigned int atomCount, float lj14scale, float c14scale) : _c14scale(c14scale), _lj14scale(lj14scale), _atomCount(atomCount) {}
+    virtual float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms);
 protected:
     float _c14scale;
     float _lj14scale;
+    unsigned int _atomCount;
 };
 
-class OpenCLEvaluator : EnergyEvaluator {
-    float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) override;
-};
 
 class CPUEvaluator : EnergyEvaluator {
-    float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) override;
+public:
+    CPUEvaluator(unsigned int atomCount, float lj14scale, float c14scale) : EnergyEvaluator(atomCount, lj14scale, c14scale) {}
+    float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms) override;
 };
+
+class OpenGLEvaluator : EnergyEvaluator {
+public:
+    OpenGLEvaluator(unsigned int atomCount, float lj14scale, float c14scale);
+    float getEnergy(Eigen::Matrix4Xf* atomParams, Eigen::Matrix4Xf* atoms) override;
+
+};
+
 
 #endif /* EnergyEvaluator_hpp */

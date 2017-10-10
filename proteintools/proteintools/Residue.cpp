@@ -10,9 +10,10 @@
 #include "PDBGeometry.hpp"
 #include <Eigen/Geometry>
 
-#define DEFAULT_BACKBONE_BOND_LENGTH 1.47
+#define DEFAULT_BACKBONE_BOND_LENGTH 1.47f
 
 Residue::Residue() {
+    _bondAxis = Eigen::Vector3f(-1.0 * DEFAULT_BACKBONE_BOND_LENGTH, 0.0, 0.0);
 }
 
 void Residue::setName(ResidueType name) {
@@ -64,7 +65,6 @@ Eigen::Matrix4f Residue::getTransformForChild(const Residue *child) const {
 
     float bondLength = DEFAULT_BACKBONE_BOND_LENGTH;
     Eigen::Vector4f bondAxis(-1.0 * bondLength, 0.0, 0.0, 0.0);
-
     
     AtomName parentAtomName = ((map<int, AtomName>) _atomIdxToName)[_parentAtomIdx];
     AtomName childAtomName = ((map<int, AtomName>)child->_atomIdxToName)[child->_childAtomIdx];

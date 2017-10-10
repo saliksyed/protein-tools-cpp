@@ -21,6 +21,8 @@ public:
     ForceField(const char* path);
     const Residue* getResidue(ResidueType r, bool isChainStart=false, bool isChainEnd=false);
     const Residue* getResidue(const char* r, bool isChainStart=false, bool isChainEnd=false);
+    float getLj14scale() { return _lj14scale; }
+    float getC14scale() { return _c14scale; }
     ~ForceField();
 protected:
     float _lj14scale;

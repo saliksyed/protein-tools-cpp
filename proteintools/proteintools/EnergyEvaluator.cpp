@@ -8,23 +8,21 @@
 
 #include "EnergyEvaluator.hpp"
 #include <math.h>
+#include <iostream>
 
-float EnergyEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) {
+
+float EnergyEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms) {
     return 0.0;
 }
 
-float OpenCLEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) {
-    return 0.0;
-}
-
-float CPUEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) {
+float CPUEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms) {
     float energy = 0.0;
-    for(size_t i = 0; i < numAtoms - 1; i++) {
+    for(size_t i = 0; i < _atomCount - 1; i++) {
         float charge1 = atomParams->col(i).y();
         float sigma1 = atomParams->col(i).z();
         float epsilon1 = atomParams->col(i).w();
         Eigen::Vector3f pos1 = atoms->col(i).head<3>();
-        for(size_t j = i + 1; j < numAtoms; j++) {
+        for(size_t j = i + 1; j < _atomCount; j++) {
             float charge2 = atomParams->col(j).y();
             float sigma2 = atomParams->col(j).z();
             float epsilon2 = atomParams->col(j).w();
@@ -41,4 +39,13 @@ float CPUEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* a
         }
     }
     return energy;
+}
+
+OpenGLEvaluator::OpenGLEvaluator(unsigned int atomCount, float lj14scale, float c14scale) : EnergyEvaluator(atomCount, lj14scale, c14scale) {
+    
+}
+
+
+float OpenGLEvaluator::getEnergy(Eigen::Matrix4Xf * atomParamsIn, Eigen::Matrix4Xf* atomsIn) {
+    return 0.0;
 }

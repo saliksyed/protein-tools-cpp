@@ -15,7 +15,6 @@
 		9B75C3E71F873561009630D5 /* Simulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3E51F873561009630D5 /* Simulator.cpp */; };
 		9B75C3EA1F8A8BE2009630D5 /* Conformation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B75C3E81F8A8BE2009630D5 /* Conformation.cpp */; };
 		9B9D93871F8543EE00253880 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D93861F8543EE00253880 /* main.cpp */; settings = {COMPILER_FLAGS = "-v"; }; };
-		9B9D938E1F8547E700253880 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9D938D1F8547E700253880 /* OpenCL.framework */; };
 		9BA4D6421F8AC9A4007CF599 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4D6401F8AC9A4007CF599 /* Server.cpp */; };
 		9BA4D6441F8ACDE7007CF599 /* libcrypto.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D6431F8ACDE7007CF599 /* libcrypto.1.0.0.dylib */; };
 		9BA4D6541F8ADA3A007CF599 /* libuWS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D6531F8ADA3A007CF599 /* libuWS.dylib */; };
@@ -58,7 +57,6 @@
 		9B75C3F21F8AC148009630D5 /* ProteinTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProteinTools.h; sourceTree = "<group>"; };
 		9B9D93831F8543EE00253880 /* proteintools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = proteintools; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9D93861F8543EE00253880 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9B9D938D1F8547E700253880 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = System/Library/Frameworks/OpenCL.framework; sourceTree = SDKROOT; };
 		9BA4D6401F8AC9A4007CF599 /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		9BA4D6411F8AC9A4007CF599 /* Server.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
 		9BA4D6431F8ACDE7007CF599 /* libcrypto.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.0.0.dylib; path = ../../../../../usr/local/Cellar/openssl/1.0.2j/lib/libcrypto.1.0.0.dylib; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				9BA4D65D1F8B2975007CF599 /* libuv.1.dylib in Frameworks */,
 				9BA4D6581F8ADAFB007CF599 /* libssl.0.9.8.tbd in Frameworks */,
 				9BA4D6561F8ADA80007CF599 /* libz.1.2.11.dylib in Frameworks */,
-				9B9D938E1F8547E700253880 /* OpenCL.framework in Frameworks */,
 				9BA4D6541F8ADA3A007CF599 /* libuWS.dylib in Frameworks */,
 				9BA4D6441F8ACDE7007CF599 /* libcrypto.1.0.0.dylib in Frameworks */,
 			);
@@ -108,7 +105,6 @@
 				9BA4D6551F8ADA80007CF599 /* libz.1.2.11.dylib */,
 				9BA4D6531F8ADA3A007CF599 /* libuWS.dylib */,
 				9BA4D6431F8ACDE7007CF599 /* libcrypto.1.0.0.dylib */,
-				9B9D938D1F8547E700253880 /* OpenCL.framework */,
 				9B9D93851F8543EE00253880 /* proteintools */,
 				9B9D93841F8543EE00253880 /* Products */,
 			);

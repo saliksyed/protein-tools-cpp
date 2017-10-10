@@ -16,7 +16,6 @@ using namespace std;
 #define TORSION_EPSILON 0.00001f
 
 Simulator::Simulator(Chain& chain, ForceField& forcefield) {
-    
     size_t atom_count = 0;
     ResidueTypeIterator it = chain.first_residue();
 
@@ -28,6 +27,10 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
         atom_count += r->numAtoms();
         it++;
     }
+    
+    _numAtoms = atom_count;
+
+    _evaluator = (EnergyEvaluator*) new CPUEvaluator((unsigned int)_numAtoms, forcefield.getLj14scale(), forcefield.getC14scale());
     
     // initialize the conformation
     _conformation = new Conformation(_residues.size());
@@ -130,11 +133,12 @@ void Simulator::setConformation(Conformation &conformation, bool forceUpdate) {
     }
 }
 
-void Simulator::getConformation(Conformation& conformation) const {
-    assert(conformation.numTorsionParameters() == _conformation->numTorsionParameters());
+Conformation Simulator::getConformation() const {
+    Conformation conformation(_conformation->numTorsionParameters());
     for(size_t i = 0; i < _conformation->numTorsionParameters(); i++) {
         conformation.setTorsion(i, _conformation->getTorsion(i));
     }
+    return conformation;
 }
 
 void Simulator::getAtoms(vector<AtomInfo>& atomList) const{
@@ -166,7 +170,6 @@ void Simulator::getBonds(vector<pair<int, int>> & bondList) const{
         while(a_it != r->last_bond()) {
             size_t a1 = a_it->atom1_idx + offset;
             size_t a2 = a_it->atom2_idx + offset;
-            std::cout<<a_it->atom1_idx<<","<<a_it->atom2_idx <<std::endl;
             bondList.push_back(pair<int, int>((int)a1, (int)a2));
             a_it++;
         }
@@ -175,11 +178,11 @@ void Simulator::getBonds(vector<pair<int, int>> & bondList) const{
 }
 
 float Simulator::getEnergy() const {
-    // TODO: write OpenCL kernel using _atomsTransformed.data() and _atomParams.data()
-    return 0.0;
+    return _evaluator->getEnergy(_atomParams, _atomsTransformed);
 }
 
 Simulator::~Simulator() {
+    delete _evaluator;
     delete _atoms;
     delete _atomsTransformed;
     delete _atomParams;
