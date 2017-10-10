@@ -135,20 +135,44 @@ void Simulator::getConformation(Conformation& conformation) const {
 }
 
 vector<AtomInfo> Simulator::getAtoms() const{
-    AtomInfo test;
-    AtomType tp;
-    tp.ID = 0;
-    tp.element[0] = 'N';
-    tp.atomClass[0] = 'N';
-    test.atom = tp;
-    vector<AtomInfo> v;
-    v.push_back(test);
-    return v;
+    vector<AtomInfo> atomList;
+    size_t idx = 0;
+    for(size_t i = 0; i < _residues.size(); i++) {
+        const Residue * r = _residues[i];
+        ResidueType type = r->name();
+        AtomIterator a_it = r->first_atom();
+        size_t idxInResidue = 0;
+        while(a_it != r->last_atom()) {
+            AtomInfo info;
+            AtomName name(a_it->first);
+            info.atom = a_it->second;
+            info.isBackboneChild = idxInResidue == r->parentAtomIndex();
+            info.isBackboneChild = idxInResidue == r->childAtomIndex();
+            info.residue = type;
+            info.position = _atomsTransformed->col(idx);
+            atomList.push_back(info);
+            a_it++;
+            idx++;
+            idxInResidue++;
+        }
+    }
+    return atomList;
 }
 vector<pair<int, int>> Simulator::getBonds() const{
-    vector<pair<int, int>> v;
-    v.push_back(pair<int, int>(0,0));
-    return v;
+    vector<pair<int, int>> bondList;
+    size_t offset = 0;
+    for(size_t i = 0; i < _residues.size(); i++) {
+        const Residue * r = _residues[i];
+        BondIterator a_it = r->first_bond();
+        while(a_it != r->last_bond()) {
+            size_t a1 = a_it->atom1_idx + offset;
+            size_t a2 = a_it->atom2_idx + offset;
+            bondList.push_back(pair<int, int>((int)a1, (int)a2));
+            a_it++;
+        }
+        offset += r->numAtoms();
+    }
+    return bondList;
 }
 
 float Simulator::getEnergy() const {

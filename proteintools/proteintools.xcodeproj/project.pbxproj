@@ -23,6 +23,7 @@
 		9BA4D6581F8ADAFB007CF599 /* libssl.0.9.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D6571F8ADAFB007CF599 /* libssl.0.9.8.tbd */; };
 		9BA4D65B1F8ADED0007CF599 /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4D6591F8ADED0007CF599 /* json11.cpp */; };
 		9BA4D65D1F8B2975007CF599 /* libuv.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA4D65C1F8B2975007CF599 /* libuv.1.dylib */; };
+		9BA4D6601F8B3CE3007CF599 /* EnergyEvaluator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4D65E1F8B3CE3007CF599 /* EnergyEvaluator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,8 @@
 		9BA4D6591F8ADED0007CF599 /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json11.cpp; sourceTree = "<group>"; };
 		9BA4D65A1F8ADED0007CF599 /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json11.hpp; sourceTree = "<group>"; };
 		9BA4D65C1F8B2975007CF599 /* libuv.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libuv.1.dylib; path = ../../../../../usr/local/Cellar/libuv/1.15.0/lib/libuv.1.dylib; sourceTree = "<group>"; };
+		9BA4D65E1F8B3CE3007CF599 /* EnergyEvaluator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyEvaluator.cpp; sourceTree = "<group>"; };
+		9BA4D65F1F8B3CE3007CF599 /* EnergyEvaluator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnergyEvaluator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				9B75C3CB1F85BC31009630D5 /* Residue.hpp */,
 				9B75C3D81F85E8A9009630D5 /* PDBGeometry.cpp */,
 				9B75C3D91F85E8A9009630D5 /* PDBGeometry.hpp */,
+				9BA4D65E1F8B3CE3007CF599 /* EnergyEvaluator.cpp */,
+				9BA4D65F1F8B3CE3007CF599 /* EnergyEvaluator.hpp */,
 				9B75C3E51F873561009630D5 /* Simulator.cpp */,
 				9B75C3E61F873561009630D5 /* Simulator.hpp */,
 				9B75C3E81F8A8BE2009630D5 /* Conformation.cpp */,
@@ -208,6 +213,7 @@
 				9B75C3CC1F85BC31009630D5 /* Residue.cpp in Sources */,
 				9B75C3C61F85B87E009630D5 /* ForceField.cpp in Sources */,
 				9B9D93871F8543EE00253880 /* main.cpp in Sources */,
+				9BA4D6601F8B3CE3007CF599 /* EnergyEvaluator.cpp in Sources */,
 				9B75C3EA1F8A8BE2009630D5 /* Conformation.cpp in Sources */,
 				9B75C3E71F873561009630D5 /* Simulator.cpp in Sources */,
 				9B75C3E41F860D4A009630D5 /* tinyxml2.cpp in Sources */,
