@@ -45,7 +45,6 @@ protected:
     EnergyEvaluator* _evaluator;
     vector<const Residue*> _residues;
     vector<Eigen::Matrix4f> _matrixStack;
-    map<size_t, Eigen::Matrix4f> _torsionTransforms;
     vector<Eigen::Matrix4f> _translationTransforms;
     Conformation* _conformation;
     

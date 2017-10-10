@@ -90,46 +90,30 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
 }
 
 void Simulator::setConformation(Conformation &conformation, bool forceUpdate) {
-    // Check which parameters have changed
-    size_t firstUpdateIdx = numeric_limits<size_t>::max();
-    for(size_t i = 0; i < _conformation->numTorsionParameters(); i++) {
-        float currentParamValue = _conformation->getTorsion(i);
-        float newParamValue = conformation.getTorsion(i);
-        
-        if (abs(currentParamValue - newParamValue) > TORSION_EPSILON) {
-            // update the rotation matrix if non-zero:
-            if (abs(newParamValue) > TORSION_EPSILON) {
-                Eigen::Matrix4f rot;
-                rot.setIdentity();
-                rot.block<3,3>(0,0) = Eigen::AngleAxisf(newParamValue,
-                                                          _residues[i]->getBondAxis()).matrix();
-                rot.rightCols(1) = Eigen::Vector4f(0.0, 0.0, 0.0, 1.0);
-                _torsionTransforms[i] = rot;
-            } else {
-                _torsionTransforms.erase(i);
-            }
-            firstUpdateIdx = min(firstUpdateIdx, i);
-        }
-    }
-    
+
     // update the transformed atom data
     size_t curr = _residues[0]->numAtoms();
     for(size_t i = 1; i < _residues.size(); i++) {
-        size_t numAtoms = _residues[i]->numAtoms();
-        if (i >= firstUpdateIdx || forceUpdate) {
-            if (_torsionTransforms.find(i) != _torsionTransforms.end()) {
-                _matrixStack[i] = _translationTransforms[i] *
-                                _torsionTransforms[i] *
-                                _matrixStack[i - 1];
-            } else {
-                _matrixStack[i] = _translationTransforms[i] *
-                                _matrixStack[i - 1];
-            }
-            for(size_t j = 0; j < numAtoms; j++) {
-                _atomsTransformed->col(curr + j) << _matrixStack[i] * _atoms->col(curr + j);
-            }
+        if (conformation.getTorsion(i) > TORSION_EPSILON) {
+            Eigen::Matrix4f rot;
+            rot.setIdentity();
+            Eigen::Vector3f transformedAxis = (_matrixStack[i-1] * _residues[i]->getBondAxis()).head<3>();
+            transformedAxis.normalize();
+            rot.block<3,3>(0,0) = Eigen::AngleAxisf(conformation.getTorsion(i),
+                                                    transformedAxis).matrix();
+            rot.rightCols(1) = Eigen::Vector4f(0.0, 0.0, 0.0, 1.0);
+
+            _matrixStack[i] = _translationTransforms[i] *
+                            rot *
+                            _matrixStack[i - 1];
+        } else {
+            _matrixStack[i] = _translationTransforms[i] *
+                            _matrixStack[i - 1];
         }
-        curr += numAtoms;
+        for(size_t j = 0; j < _residues[i]->numAtoms(); j++) {
+            _atomsTransformed->col(curr + j) << _matrixStack[i] * _atoms->col(curr + j);
+        }
+        curr += _residues[i]->numAtoms();
     }
 }
 

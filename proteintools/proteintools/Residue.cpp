@@ -13,7 +13,7 @@
 #define DEFAULT_BACKBONE_BOND_LENGTH 1.47f
 
 Residue::Residue() {
-    _bondAxis = Eigen::Vector3f(-1.0 * DEFAULT_BACKBONE_BOND_LENGTH, 0.0, 0.0);
+    _bondAxis = Eigen::Vector4f(-1.0 * DEFAULT_BACKBONE_BOND_LENGTH, 0.0, 0.0, 1.0);
 }
 
 void Residue::setName(ResidueType name) {

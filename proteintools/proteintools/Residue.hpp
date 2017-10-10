@@ -43,7 +43,7 @@ public:
 
     int childAtomIndex() const{ return _childAtomIdx; };
     int parentAtomIndex() const{ return _parentAtomIdx; };
-    Eigen::Vector3f getBondAxis() const{ return _bondAxis; };
+    Eigen::Vector4f getBondAxis() const{ return _bondAxis; };
     Eigen::Matrix4f getTransformForChild(const Residue *child) const;
 
     size_t numAtoms() const { return _atoms.size(); }
@@ -57,7 +57,7 @@ protected:
     int _childAtomIdx;
     int _parentAtomIdx;
     ResidueType _name;
-    Eigen::Vector3f _bondAxis;
+    Eigen::Vector4f _bondAxis;
     map<AtomName, AtomType> _atoms;
     map<int, AtomName> _atomIdxToName;
     vector<AtomType> _atomsOrdered;

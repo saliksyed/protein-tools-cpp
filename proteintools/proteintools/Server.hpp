@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Simulator.hpp"
 #include <string>
+#include <thread>
 using namespace std;
 
 class Server {
