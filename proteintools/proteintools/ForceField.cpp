@@ -74,10 +74,9 @@ void ForceField::parse(const char * path) {
             AtomName name(atomsElem->Attribute("name"));
             atomsElem->QueryIntAttribute("type", &type);
             map<int,AtomType>::iterator t = _atomTypes.find(type);
-            if (t!= _atomTypes.end()) {
-                currResidue->addAtom(name, _atomTypes[type], idx);
-                idx++;
-            }
+            assert(t!= _atomTypes.end());
+            currResidue->addAtom(name, _atomTypes[type]);
+            idx++;
             atomsElem = atomsElem->NextSiblingElement("Atom");
         }
         while (bondsElem) {
@@ -105,10 +104,10 @@ const Residue* ForceField::getResidue(ResidueType r, bool isChainStart, bool isC
     if (r == "HIS") {
         r = ResidueType("HIE");
     }
-    if (isChainStart) {
+    if (isChainStart && !isChainEnd) {
         r = ResidueType("C" + r);
     }
-    if (isChainEnd) {
+    if (isChainEnd && !isChainStart) {
         r = ResidueType("N" + r);
     }
     map<ResidueType, Residue*>::iterator t = _residues.find(r);

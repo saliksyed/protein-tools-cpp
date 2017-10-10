@@ -26,8 +26,8 @@ struct Bond {
     unsigned int atom2_idx;
 };
 
+
 typedef string ResidueType;
-typedef typename map<AtomName,AtomType>::const_iterator AtomIterator;
 typedef typename vector<Bond>::const_iterator BondIterator;
 
 
@@ -37,7 +37,7 @@ public:
     ResidueType name() const { return _name; }
     ResidueType geometry_name() const;
     void setName(ResidueType name);
-    void addAtom(AtomName& name, AtomType& type, int idx);
+    void addAtom(AtomName& name, AtomType& type);
     void addBond(Bond& b);
     void addExternalBond(Bond& b);
 
@@ -47,8 +47,7 @@ public:
     Eigen::Matrix4f getTransformForChild(const Residue *child) const;
 
     size_t numAtoms() const { return _atoms.size(); }
-    AtomIterator first_atom() const { return _atoms.cbegin(); }
-    AtomIterator last_atom() const { return _atoms.cend(); }
+    pair<AtomName, AtomType> getAtom(size_t idx) const;
     BondIterator first_bond() const { return _bonds.cbegin(); }
     BondIterator last_bond() const { return _bonds.cend(); }
     BondIterator first_external_bond() const { return _externalBonds.cbegin(); }
@@ -61,6 +60,7 @@ protected:
     Eigen::Vector3f _bondAxis;
     map<AtomName, AtomType> _atoms;
     map<int, AtomName> _atomIdxToName;
+    vector<AtomType> _atomsOrdered;
     vector<Bond> _bonds;
     vector<Bond> _externalBonds;
     

@@ -51,26 +51,27 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
         const Residue * r = _residues[i];
         ResidueType type = r->geometry_name();
         PDBGeometry & geom = PDBGeometry::get(type);
-        AtomIterator a_it = r->first_atom();
-        while(a_it != r->last_atom()) {
+        for(size_t j = 0; j < r->numAtoms(); j++) {
+            pair<AtomName,AtomType> a = r->getAtom(j);
             _atomParams->col(curr_atom)<<
             -1.0f,
-            a_it->second.charge,
-            a_it->second.sigma,
-            a_it->second.epsilon;
-            std::cout<<a_it->first<<std::endl;
-            AtomName name(a_it->first);
+            a.second.charge,
+            a.second.sigma,
+            a.second.epsilon;
+            AtomName name(a.first);
             if (geom.hasGeometry(name)) {
                 _atomParams->col(curr_atom)<<
                 1.0f,
-                a_it->second.charge,
-                a_it->second.sigma,
-                a_it->second.epsilon;
+                a.second.charge,
+                a.second.sigma,
+                a.second.epsilon;
                 Eigen::Vector4f pos = geom.position(name);
                 _atoms->col(curr_atom)<<pos.x(), pos.y(), pos.z(), 1.0;
                 _atomsTransformed->col(curr_atom)<<pos.x(), pos.y(), pos.z(), 1.0;
+            } else {
+                _atoms->col(curr_atom)<<0.0, 0.0, 0.0, 0.0;
+                _atomsTransformed->col(curr_atom)<<0.0, 0.0, 0.0, 0.0;
             }
-            a_it++;
             curr_atom++;
         }
         if (i != 0) {
@@ -82,10 +83,10 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
             _matrixStack.push_back(Eigen::Matrix4f::Identity(4, 4));
         }
     }
-    setConformation(*_conformation);
+    setConformation(*_conformation, true);
 }
 
-void Simulator::setConformation(Conformation &conformation) {
+void Simulator::setConformation(Conformation &conformation, bool forceUpdate) {
     // Check which parameters have changed
     size_t firstUpdateIdx = numeric_limits<size_t>::max();
     for(size_t i = 0; i < _conformation->numTorsionParameters(); i++) {
@@ -112,7 +113,7 @@ void Simulator::setConformation(Conformation &conformation) {
     size_t curr = 0;
     for(size_t i = 1; i < _residues.size(); i++) {
         size_t numAtoms = _residues[i]->numAtoms();
-        if (i >= firstUpdateIdx) {
+        if (i >= firstUpdateIdx || forceUpdate) {
             if (_torsionTransforms.find(i) != _torsionTransforms.end()) {
                 _matrixStack[i] = _translationTransforms[i] *
                                 _torsionTransforms[i] *
@@ -141,20 +142,19 @@ void Simulator::getAtoms(vector<AtomInfo>& atomList) const{
     for(size_t i = 0; i < _residues.size(); i++) {
         const Residue * r = _residues[i];
         ResidueType type = r->name();
-        AtomIterator a_it = r->first_atom();
-        size_t idxInResidue = 0;
-        while(a_it != r->last_atom()) {
+        for(size_t j = 0; j < r->numAtoms(); j++){
+            pair<AtomName, AtomType> a = r->getAtom(j);
             AtomInfo info;
-            AtomName name(a_it->first);
-            info.atom = a_it->second;
-            info.isBackboneChild = idxInResidue == r->parentAtomIndex();
-            info.isBackboneChild = idxInResidue == r->childAtomIndex();
+            AtomName name(a.first);
+            PDBGeometry & geom = PDBGeometry::get(r->geometry_name().c_str());
+            info.geometryValid = geom.hasGeometry(name);
+            info.atom = a.second;
+            info.isBackboneChild = j == r->parentAtomIndex();
+            info.isBackboneChild = j == r->childAtomIndex();
             info.residue = type;
             info.position = _atomsTransformed->col(idx);
             atomList.push_back(info);
-            a_it++;
             idx++;
-            idxInResidue++;
         }
     }
 }

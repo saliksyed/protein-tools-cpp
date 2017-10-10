@@ -72,9 +72,9 @@ void PDBGeometry::parse(const char *path) {
                 istream_iterator<string>{}};
             if (tokens[0] == ATOM_POS_DELIMITER) {
                 AtomName name = tokens[2];
-                double x = strtod(tokens[4].c_str(), NULL);
-                double y = strtod(tokens[5].c_str(), NULL);
-                double z = strtod(tokens[6].c_str(), NULL);
+                double x = strtod(tokens[5].c_str(), NULL);
+                double y = strtod(tokens[6].c_str(), NULL);
+                double z = strtod(tokens[7].c_str(), NULL);
                 Eigen::Vector4f vec(x, y, z, 1.0);
                 _geometry[name] = vec;
             }

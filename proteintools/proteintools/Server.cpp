@@ -21,6 +21,7 @@ string Server::serializeTopology(vector<AtomInfo> & atomInfo, vector<pair<int, i
             { "residueId", atom.residue },
             { "isParent", atom.isBackboneParent },
             { "isChild", atom.isBackboneChild },
+            { "geometryValid", atom.geometryValid },
             { "x", atom.position.x() },
             { "y", atom.position.y() },
             { "z", atom.position.z() }

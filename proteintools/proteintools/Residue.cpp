@@ -29,9 +29,15 @@ ResidueType Residue::geometry_name() const {
     }
 }
 
-void Residue::addAtom(AtomName& name, AtomType& type, int idx) {
+void Residue::addAtom(AtomName& name, AtomType& type) {
     _atoms[name] = type;
-    _atomIdxToName[idx] = name;
+    _atomIdxToName[(int)_atomsOrdered.size()] = name;
+    _atomsOrdered.push_back(type);
+    
+}
+
+pair<AtomName, AtomType> Residue::getAtom(size_t idx) const {
+    return pair<AtomName, AtomType>(((map<int, AtomName>) _atomIdxToName)[(int)idx], _atomsOrdered[idx]);
 }
 
 void Residue::addBond(Bond& b) {
@@ -39,10 +45,10 @@ void Residue::addBond(Bond& b) {
 }
 
 void Residue::addExternalBond(Bond& b) {
-    AtomName a = _atomIdxToName[b.atom1_idx];
-    if (_atoms[a].element[0] == 'N') {
+
+    if (_atomsOrdered[b.atom1_idx].element[0] == 'N') {
         _parentAtomIdx = b.atom1_idx;
-    } else if (_atoms[a].element[0] == 'C') {
+    } else if (_atomsOrdered[b.atom1_idx].element[0] == 'C') {
         _childAtomIdx = b.atom1_idx;
     }
     _externalBonds.push_back(b);

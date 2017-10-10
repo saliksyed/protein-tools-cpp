@@ -21,6 +21,7 @@ using namespace std;
 struct AtomInfo {
     AtomType atom;
     ResidueType residue;
+    bool geometryValid;
     bool isBackboneParent;
     bool isBackboneChild;
     Eigen::Vector4f position;
@@ -31,7 +32,7 @@ public:
     Simulator(Chain& chain, ForceField& forcefield);
     ~Simulator();
     float getEnergy() const;
-    void setConformation(Conformation& conformation);
+    void setConformation(Conformation& conformation, bool forceUpdate=false);
     void getConformation(Conformation& conformation) const;
     void getAtoms(vector<AtomInfo> & atoms) const;
     void getBonds(vector<pair<int, int>> & bonds) const;
