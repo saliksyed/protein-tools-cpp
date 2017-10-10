@@ -110,7 +110,7 @@ void Simulator::setConformation(Conformation &conformation, bool forceUpdate) {
     }
     
     // update the transformed atom data
-    size_t curr = 0;
+    size_t curr = _residues[0]->numAtoms();
     for(size_t i = 1; i < _residues.size(); i++) {
         size_t numAtoms = _residues[i]->numAtoms();
         if (i >= firstUpdateIdx || forceUpdate) {
@@ -166,6 +166,7 @@ void Simulator::getBonds(vector<pair<int, int>> & bondList) const{
         while(a_it != r->last_bond()) {
             size_t a1 = a_it->atom1_idx + offset;
             size_t a2 = a_it->atom2_idx + offset;
+            std::cout<<a_it->atom1_idx<<","<<a_it->atom2_idx <<std::endl;
             bondList.push_back(pair<int, int>((int)a1, (int)a2));
             a_it++;
         }

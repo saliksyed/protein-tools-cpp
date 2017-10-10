@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 {
     ForceField f = ForceField("/Users/saliksyed/Desktop/amber99sb.xml");
     PDBGeometry::load("/Users/saliksyed/src/protein-tools-cpp/proteintools/proteintools/data/v3PDB");
-    Chain c("CQCQQQ");
+    Chain c("CGHHHQQQQCG");
     Simulator sim(c, f);
     Server* server = new Server(sim);
     server->run(1283);

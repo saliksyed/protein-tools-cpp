@@ -68,7 +68,6 @@ void ForceField::parse(const char * path) {
         map<AtomName, AtomType> atoms;
         vector<Bond> bonds;
         vector<Bond> externalBonds;
-        int idx = 0;
         while (atomsElem) {
             int type;
             AtomName name(atomsElem->Attribute("name"));
@@ -76,7 +75,6 @@ void ForceField::parse(const char * path) {
             map<int,AtomType>::iterator t = _atomTypes.find(type);
             assert(t!= _atomTypes.end());
             currResidue->addAtom(name, _atomTypes[type]);
-            idx++;
             atomsElem = atomsElem->NextSiblingElement("Atom");
         }
         while (bondsElem) {

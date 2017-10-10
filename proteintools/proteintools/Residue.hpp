@@ -21,7 +21,7 @@ using namespace std;
 class PDBGeometry;
 
 struct Bond {
-    Bond(int a, int b) : atom1_idx(a), atom2_idx(b) {};
+    Bond(unsigned int a, unsigned int b) : atom1_idx(a), atom2_idx(b) {};
     unsigned int atom1_idx;
     unsigned int atom2_idx;
 };
