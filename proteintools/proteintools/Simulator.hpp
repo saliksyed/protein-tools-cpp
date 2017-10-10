@@ -33,8 +33,8 @@ public:
     float getEnergy() const;
     void setConformation(Conformation& conformation);
     void getConformation(Conformation& conformation) const;
-    vector<AtomInfo> getAtoms() const;
-    vector<pair<int, int>> getBonds() const;
+    void getAtoms(vector<AtomInfo> & atoms) const;
+    void getBonds(vector<pair<int, int>> & bonds) const;
 protected:
     Eigen::Matrix4Xf* _atoms;
     Eigen::Matrix4Xf* _atomsTransformed;

@@ -7,7 +7,6 @@
 //
 
 #include "EnergyEvaluator.hpp"
-#include <emmintrin.h>
 #include <math.h>
 
 float EnergyEvaluator::getEnergy(Eigen::Matrix4Xf * atomParams, Eigen::Matrix4Xf* atoms, size_t numAtoms) {

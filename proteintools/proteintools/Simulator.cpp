@@ -58,7 +58,7 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
             a_it->second.charge,
             a_it->second.sigma,
             a_it->second.epsilon;
-            
+            std::cout<<a_it->first<<std::endl;
             AtomName name(a_it->first);
             if (geom.hasGeometry(name)) {
                 _atomParams->col(curr_atom)<<
@@ -71,6 +71,7 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
                 _atomsTransformed->col(curr_atom)<<pos.x(), pos.y(), pos.z(), 1.0;
             }
             a_it++;
+            curr_atom++;
         }
         if (i != 0) {
             Eigen::Matrix4f m = _residues[i - 1]->getTransformForChild(r);
@@ -81,6 +82,7 @@ Simulator::Simulator(Chain& chain, ForceField& forcefield) {
             _matrixStack.push_back(Eigen::Matrix4f::Identity(4, 4));
         }
     }
+    setConformation(*_conformation);
 }
 
 void Simulator::setConformation(Conformation &conformation) {
@@ -134,8 +136,7 @@ void Simulator::getConformation(Conformation& conformation) const {
     }
 }
 
-vector<AtomInfo> Simulator::getAtoms() const{
-    vector<AtomInfo> atomList;
+void Simulator::getAtoms(vector<AtomInfo>& atomList) const{
     size_t idx = 0;
     for(size_t i = 0; i < _residues.size(); i++) {
         const Residue * r = _residues[i];
@@ -156,10 +157,8 @@ vector<AtomInfo> Simulator::getAtoms() const{
             idxInResidue++;
         }
     }
-    return atomList;
 }
-vector<pair<int, int>> Simulator::getBonds() const{
-    vector<pair<int, int>> bondList;
+void Simulator::getBonds(vector<pair<int, int>> & bondList) const{
     size_t offset = 0;
     for(size_t i = 0; i < _residues.size(); i++) {
         const Residue * r = _residues[i];
@@ -172,7 +171,6 @@ vector<pair<int, int>> Simulator::getBonds() const{
         }
         offset += r->numAtoms();
     }
-    return bondList;
 }
 
 float Simulator::getEnergy() const {

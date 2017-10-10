@@ -64,17 +64,22 @@ void Server::run(int port) {
     uWS::Hub _uwsHub;
     _uwsHub.onMessage([this](uWS::WebSocket<uWS::SERVER> *ws, char *message, size_t length, uWS::OpCode opCode) {
         if (message[0] == 'T') {
-            vector<AtomInfo> info = this->_sim.getAtoms();
-            vector<pair<int, int>> bonds = this->_sim.getBonds();
-            string ret = serializeTopology(info, bonds);
+            vector<AtomInfo> info;
+            this->_sim.getAtoms(info);
+            vector<pair<int, int>> bondInfo;
+            this->_sim.getBonds(bondInfo);
+            string ret = serializeTopology(info, bondInfo);
             ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
         } else if (message[0] == 'S') {
-            vector<AtomInfo> info = this->_sim.getAtoms();
+            vector<AtomInfo> info;
+            this->_sim.getAtoms(info);
             string ret = serializeState(info);
             ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
         } else {
-            vector<AtomInfo> info = this->_sim.getAtoms();
-            vector<pair<int, int>> bonds = this->_sim.getBonds();
+            vector<AtomInfo> info;
+            this->_sim.getAtoms(info);
+            vector<pair<int, int>> bonds;
+            this->_sim.getBonds(bonds);
             string ret = serializeTopology(info, bonds);
             ws->send(ret.c_str(), ret.length(), uWS::OpCode::TEXT);
         }
